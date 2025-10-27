@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="../Back/php/register.php" method="post">
+        <label for="imie">Imie:</label>
+        <input type="text" name="imie" id="imie" required><br>
+
+        <label for="nazwisko">Nazwisko:</label>
+        <input type="text" name="nazwisko" id="nazwisko"><br>
+
+        <label for="avatar">Avatar URL:</label>
+        <input type="password" name="avatar" id="avatar"><br>
+
+        <button type="submit">Wyślij</button>
+    </form>
+
+    <span>Właściwość: <b>$_POST['']</b></span>
+</body>
+</html>
