@@ -1,0 +1,35 @@
+@use '../../styles/global' as *;
+
+* {
+  @include base-page;
+}
+
+body {
+  @include base-bg-coclor;
+
+  .table {
+    padding: 1rem;
+    margin: 3rem auto;
+    width: 1000px;
+    justify-content: space-around;
+    @include flex-row;
+    @include base-border;
+    border-radius: 5px;
+
+    .id_container, .first_name_container, .last_name_container, .avatar_container {
+      width: 100%;
+      gap: 1rem;
+      @include flex-column;
+
+      .id_value, .first_name_value, .last_name_value, .avatar_value {
+        @include flex-column;
+        gap: 1rem;
+      }
+    }
+    .id, .first_name, .last_name, .avatar {
+      .title {
+        border-bottom: 1px solid #3d444db3;
+      }
+    }
+  }
+}

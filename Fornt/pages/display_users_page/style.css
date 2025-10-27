@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../styles/fonts/NetflixSans-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Custom";
+  color: white;
+  outline: none;
+}
+
+body {
+  background-color: #0d1117;
+}
+body .table {
+  padding: 1rem;
+  margin: 3rem auto;
+  width: 1000px;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgba(61, 68, 77, 0.7019607843);
+  border-radius: 5px;
+}
+body .table .id_container, body .table .first_name_container, body .table .last_name_container, body .table .avatar_container {
+  width: 100%;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+body .table .id_container .id_value, body .table .id_container .first_name_value, body .table .id_container .last_name_value, body .table .id_container .avatar_value, body .table .first_name_container .id_value, body .table .first_name_container .first_name_value, body .table .first_name_container .last_name_value, body .table .first_name_container .avatar_value, body .table .last_name_container .id_value, body .table .last_name_container .first_name_value, body .table .last_name_container .last_name_value, body .table .last_name_container .avatar_value, body .table .avatar_container .id_value, body .table .avatar_container .first_name_value, body .table .avatar_container .last_name_value, body .table .avatar_container .avatar_value {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+body .table .id .title, body .table .first_name .title, body .table .last_name .title, body .table .avatar .title {
+  border-bottom: 1px solid rgba(61, 68, 77, 0.7019607843);
+}
+
+/*# sourceMappingURL=style.css.map */

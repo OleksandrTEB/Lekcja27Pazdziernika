@@ -1,0 +1,102 @@
+@font-face {
+  font-family: "Custom";
+  src: url("../../styles/fonts/NetflixSans-Medium.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Custom";
+  color: white;
+  outline: none;
+}
+
+body {
+  background-color: #0d1117;
+}
+body header {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body header .title {
+  font-size: 30px;
+}
+body main {
+  width: 400px;
+  margin: auto;
+}
+body main .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+body main .form .name, body main .form .last_name, body main .form .avatar {
+  display: flex;
+  flex-direction: column;
+}
+body main .form .name input, body main .form .last_name input, body main .form .avatar input {
+  background-color: #151b23;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(61, 68, 77, 0.7019607843);
+}
+body main .form .name input:focus, body main .form .last_name input:focus, body main .form .avatar input:focus {
+  background-color: #0d1117;
+  border: 2px solid rgb(39, 68, 228);
+  padding: 5px 9px;
+  outline: none;
+}
+body main .form .button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body main .form .button .submit {
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #238636;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  width: 300px;
+  font-size: 17px;
+}
+body main .form .button .submit:hover {
+  cursor: pointer;
+  background-color: #1b662a;
+}
+body main .form .button .submit:active {
+  background-color: #165322;
+}
+body .alert {
+  display: none;
+  position: absolute;
+  top: 3rem;
+  right: 1rem;
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #3a9f3a;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  width: 250px;
+  animation: show 2s forwards ease-in-out;
+}
+@keyframes show {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
