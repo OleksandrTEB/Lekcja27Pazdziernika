@@ -8,27 +8,71 @@ body {
   @include base-bg-coclor;
 
   .table {
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(200px, 200px));
+    word-wrap: break-word;
     margin: 3rem auto;
     width: 1000px;
-    justify-content: space-around;
-    @include flex-row;
     @include base-border;
     border-radius: 5px;
 
-    .id_container, .first_name_container, .last_name_container, .avatar_container {
-      width: 100%;
-      gap: 1rem;
-      @include flex-column;
+    div {
+      padding: 10px 10px 10px 30px;
+      border-bottom: 1px solid #3d444db3;
+    }
 
-      .id_value, .first_name_value, .last_name_value, .avatar_value {
-        @include flex-column;
-        gap: 1rem;
+    .title {
+      border-bottom: 1px solid #3d444db3;
+      padding: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .buttons {
+      padding: 10px 10px 10px 0;
+      @include flex-row;
+      gap: 1rem;
+
+      .edit {
+        @include base-button(80px);
+      }
+
+      .delete {
+        @include base-button(80px, #911919, #e11717, #911313);
       }
     }
-    .id, .first_name, .last_name, .avatar {
-      .title {
-        border-bottom: 1px solid #3d444db3;
+  }
+
+  .detalis_form_user {
+    display: none;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #151515;
+    padding: 10px;
+    border-radius: 5px;
+
+    .form {
+      @include flex-column;
+      gap: 1rem;
+
+      .name, .last_name, .avatar {
+        @include flex-column;
+
+        input {
+          @include base-input;
+        }
+      }
+
+      .button {
+        @include flex-column;
+        align-items: center;
+
+        .submit {
+          @include base-button(300px);
+          font-size: 17px;
+        }
       }
     }
   }

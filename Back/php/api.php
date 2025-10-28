@@ -4,6 +4,7 @@ session_start();
 
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
+header("Access-Control-Allow-Methods: GET, POST, DELETE");
 header("Content-Type: application/json");
 
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
@@ -48,14 +49,8 @@ switch ($url) {
             ]);
 
             http_response_code(201);
-            echo json_encode([
-                "success" => true
-            ]);
         } else {
             http_response_code(400);
-            echo json_encode([
-                "success" => false
-            ]);
         }
         break;
 
@@ -68,8 +63,64 @@ switch ($url) {
 
             http_response_code(200);
             echo json_encode([
-                "success" => true,
                 "users" => $users
             ]);
         }
+        break;
+
+    case '/deleteUser':
+        if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            $id = $input['id'];
+
+            $stmt = $pdo->prepare("DELETE FROM users WHERE id = :id");
+            $stmt->execute([
+                "id" => $id
+            ]);
+            http_response_code(200);
+        }
+        break;
+
+    case '/getUserFromId':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            $id = $input['id'];
+
+            $stmt = $pdo->prepare("SELECT * FROM users WHERE id = :id");
+            $stmt->execute([
+                "id" => $id
+            ]);
+
+            $user = $stmt->fetch();
+
+            echo json_encode([
+                "user" => $user
+            ]);
+
+            http_response_code(200);
+        }
+        break;
+
+    case '/editUser':
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            $id = $input['id'];
+            $name = $input['name'];
+            $last_name = $input['last_name'];
+            $avatar = $input['avatar'];
+
+            $stmt = $pdo->prepare("UPDATE users SET name = :name, last_name = :last_name, avatar = :avatar WHERE id = :id");
+            $stmt->execute([
+                "id" => $id,
+                "name" => $name,
+                "last_name" => $last_name,
+                "avatar" => $avatar
+            ]);
+
+            http_response_code(200);
+        }
+        break;
 }

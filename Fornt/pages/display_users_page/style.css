@@ -17,28 +17,116 @@ body {
   background-color: #0d1117;
 }
 body .table {
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(200px, 200px));
+  word-wrap: break-word;
   margin: 3rem auto;
   width: 1000px;
-  justify-content: space-around;
-  display: flex;
-  flex-direction: row;
   border: 1px solid rgba(61, 68, 77, 0.7019607843);
   border-radius: 5px;
 }
-body .table .id_container, body .table .first_name_container, body .table .last_name_container, body .table .avatar_container {
-  width: 100%;
-  gap: 1rem;
-  display: flex;
-  flex-direction: column;
-}
-body .table .id_container .id_value, body .table .id_container .first_name_value, body .table .id_container .last_name_value, body .table .id_container .avatar_value, body .table .first_name_container .id_value, body .table .first_name_container .first_name_value, body .table .first_name_container .last_name_value, body .table .first_name_container .avatar_value, body .table .last_name_container .id_value, body .table .last_name_container .first_name_value, body .table .last_name_container .last_name_value, body .table .last_name_container .avatar_value, body .table .avatar_container .id_value, body .table .avatar_container .first_name_value, body .table .avatar_container .last_name_value, body .table .avatar_container .avatar_value {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-body .table .id .title, body .table .first_name .title, body .table .last_name .title, body .table .avatar .title {
+body .table div {
+  padding: 10px 10px 10px 30px;
   border-bottom: 1px solid rgba(61, 68, 77, 0.7019607843);
+}
+body .table .title {
+  border-bottom: 1px solid rgba(61, 68, 77, 0.7019607843);
+  padding: 1rem;
+  font-size: 1.2rem;
+}
+body .table .buttons {
+  padding: 10px 10px 10px 0;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+body .table .buttons .edit {
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #238636;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  width: 80px;
+}
+body .table .buttons .edit:hover {
+  cursor: pointer;
+  background-color: #1b662a;
+}
+body .table .buttons .edit:active {
+  background-color: #165322;
+}
+body .table .buttons .delete {
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #911919;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  width: 80px;
+}
+body .table .buttons .delete:hover {
+  cursor: pointer;
+  background-color: #e11717;
+}
+body .table .buttons .delete:active {
+  background-color: #911313;
+}
+body .detalis_form_user {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #151515;
+  padding: 10px;
+  border-radius: 5px;
+}
+body .detalis_form_user .form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+body .detalis_form_user .form .name, body .detalis_form_user .form .last_name, body .detalis_form_user .form .avatar {
+  display: flex;
+  flex-direction: column;
+}
+body .detalis_form_user .form .name input, body .detalis_form_user .form .last_name input, body .detalis_form_user .form .avatar input {
+  background-color: #151b23;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(61, 68, 77, 0.7019607843);
+}
+body .detalis_form_user .form .name input:focus, body .detalis_form_user .form .last_name input:focus, body .detalis_form_user .form .avatar input:focus {
+  background-color: #0d1117;
+  border: 2px solid rgb(39, 68, 228);
+  padding: 5px 9px;
+  outline: none;
+}
+body .detalis_form_user .form .button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .detalis_form_user .form .button .submit {
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #238636;
+  border: none;
+  border-radius: 5px;
+  font-weight: 500;
+  color: white;
+  width: 300px;
+  font-size: 17px;
+}
+body .detalis_form_user .form .button .submit:hover {
+  cursor: pointer;
+  background-color: #1b662a;
+}
+body .detalis_form_user .form .button .submit:active {
+  background-color: #165322;
 }
 
 /*# sourceMappingURL=style.css.map */
