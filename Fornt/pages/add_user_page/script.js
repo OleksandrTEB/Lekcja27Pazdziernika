@@ -1,4 +1,4 @@
-const url = 'http://localhost:2000/api.php/addUser';
+const url = 'http://localhost/Lekcja27Pazdziernika/back/php/api.php';
 const show_alert = document.querySelector('.alert');
 
 document.querySelector(".submit").addEventListener("click", () => {
@@ -17,7 +17,7 @@ async function addUser() {
     }
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(`${url}/addUser`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(user_data)

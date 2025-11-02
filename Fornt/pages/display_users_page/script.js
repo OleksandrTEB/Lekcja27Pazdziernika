@@ -1,4 +1,4 @@
-const url = 'http://localhost:2000/api.php';
+const url = 'http://localhost/Lekcja27Pazdziernika/back/php/api.php';
 const table = document.querySelector('.table');
 const edit_form = document.querySelector('.detalis_form_user');
 const submit_btn = document.querySelector('.submit');
