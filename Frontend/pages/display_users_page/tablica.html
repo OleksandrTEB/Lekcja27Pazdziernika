@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <div class="add_user_button">Dodaj użytkownika</div>
+
+<div class="table">
+    <div class="title">Id</div>
+    <div class="title">First Name</div>
+    <div class="title">Last Name</div>
+    <div class="title">Avatar</div>
+    <div class="title">Action</div>
+</div>
+
+<div class="modal_window">
+    <header>
+        <div class="title_actions"></div>
+    </header>
+    <main>
+        <div class="form">
+            <div class="name">
+                <label for="imie">Imie:</label>
+                <input type="text" name="imie" id="imie">
+            </div>
+
+            <div class="last_name">
+                <label for="nazwisko">Nazwisko:</label>
+                <input type="text" name="nazwisko" id="nazwisko">
+            </div>
+
+            <div class="avatar">
+                <label for="avatar">Avatar URL:</label>
+                <input type="text" name="avatar" id="avatar"><br>
+            </div>
+
+            <div class="button">
+                <button class="submit_btn" data-status="add">Wyślij</button>
+            </div>
+        </div>
+    </main>
+
+    <div class="alert"></div>
+</div>
+
+<div class="out_alert"></div>
+
+<script src="./script.js"></script>
+</body>
+</html>

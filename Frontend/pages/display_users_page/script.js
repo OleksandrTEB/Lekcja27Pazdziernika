@@ -1,10 +1,26 @@
-const url = 'http://localhost/Lekcja27Pazdziernika/back/php/api.php';
+const url = 'http://localhost/Lekcja27Pazdziernika/Backend/php/api.php';
 const table = document.querySelector('.table');
-const edit_form = document.querySelector('.detalis_form_user');
-const submit_btn = document.querySelector('.submit');
+const show_alert = document.querySelector('.alert');
+const show_out_alert = document.querySelector('.out_alert');
+const modal_window = document.querySelector('.modal_window');
+const add_user_btn = document.querySelector('.add_user_button')
+const submit_btn = document.querySelector(".submit_btn")
+const title_value = document.querySelector('.title_actions')
 
-let edit_buttons = [];
-let delete_buttons = [];
+add_user_btn.addEventListener('click', (e) => {
+    modal_window.style.display = 'block'
+    title_value.textContent = 'Dodaj tu nowego użytkownika!'
+    submit_btn.dataset.status = "add"
+})
+
+submit_btn.addEventListener("click", () => {
+    if (submit_btn.dataset.status === "add") {
+        addUser()
+    } else if (submit_btn.dataset.status === "edit") {
+        editUser(current_id)
+    }
+})
+
 
 let current_id = 0;
 
@@ -32,9 +48,12 @@ async function getUsers() {
                 last_name.innerText = user.last_name;
                 table.appendChild(last_name);
 
-                const avatar = document.createElement("div");
-                avatar.innerText = user.avatar;
-                table.appendChild(avatar);
+
+                const avatar_div = document.createElement("div")
+                const avatar = document.createElement("img");
+                avatar_div.appendChild(avatar)
+                avatar.src = user.avatar;
+                table.appendChild(avatar_div);
 
 
                 const div_buttons = document.createElement("div");
@@ -58,11 +77,26 @@ async function getUsers() {
                 table.appendChild(div_buttons);
             })
 
-            edit_buttons = Array.from(document.querySelectorAll('[data-edit_id]'));
-            delete_buttons = Array.from(document.querySelectorAll('[data-delete_id]'));
+            document.querySelectorAll('[data-edit_id]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.edit_id;
 
-            addEventToEdit(edit_buttons)
-            addEventToDelete(delete_buttons)
+                    submit_btn.dataset.status = "edit"
+                    title_value.textContent = 'Zmień tu użytkownika!'
+
+                    getUserFromId(id)
+
+                    current_id = id;
+                })
+            })
+            
+            document.querySelectorAll('[data-delete_id]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.delete_id;
+
+                    deleteUser(id)
+                })
+            });
         }
 
     } catch (error) {
@@ -72,28 +106,6 @@ async function getUsers() {
 
 getUsers()
 
-function addEventToEdit(arr_buttons) {
-    for (let i = 0; i < arr_buttons.length; i++) {
-        arr_buttons[i].addEventListener('click', (e) => {
-            const id = e.target.dataset.edit_id;
-
-            getUserFromId(id)
-
-            current_id = id
-        })
-    }
-}
-
-function addEventToDelete(arr_buttons) {
-    for (let i = 0; i < arr_buttons.length; i++) {
-        arr_buttons[i].addEventListener('click', (e) => {
-            const id = e.target.dataset.delete_id;
-
-            deleteUser(id)
-        })
-    }
-}
-
 async function deleteUser(id) {
     try {
         const response = await fetch(`${url}/deleteUser`, {
@@ -101,8 +113,16 @@ async function deleteUser(id) {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({id})
         })
+
+        const data = await response.json()
+
         if (response.ok) {
-            window.location.reload();
+            show_out_alert.textContent = data.message
+            show_out_alert.style.display = 'block'
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000)
         }
     } catch (error) {
         console.log("Error: ", error);
@@ -125,7 +145,7 @@ async function getUserFromId(id) {
 
         if (response.ok) {
             const user = data.user;
-            edit_form.style.display = "block";
+            modal_window.style.display = "block";
 
             first_name_field.value = user.name;
             last_name_field.value = user.last_name;
@@ -137,17 +157,12 @@ async function getUserFromId(id) {
 }
 
 
-submit_btn.addEventListener('click', () => {
-    editUser(current_id)
-
-    edit_form.style.display = "none";
-});
-
-
 async function editUser(id) {
     const first_name_field = document.querySelector('#imie').value;
     const last_name_field = document.querySelector('#nazwisko').value;
     const avatar_field = document.querySelector('#avatar').value;
+
+    add_user_btn.dataset.status = "edit"
 
     const user_data = {
         id: id,
@@ -163,8 +178,46 @@ async function editUser(id) {
             body: JSON.stringify(user_data)
         })
         if (response.ok) {
-            window.location.reload();
+            show_alert.textContent = "Użytkownik został zmieniony!"
+            show_alert.style.display = 'block';
+
+            setTimeout(() => {
+                window.location.reload();
+            }, 3000)
         }
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+
+
+async function addUser() {
+    const first_name = document.querySelector("#imie").value;
+    const last_name = document.querySelector("#nazwisko").value;
+    const avatar = document.querySelector("#avatar").value;
+
+    const user_data = {
+        name: first_name,
+        last_name: last_name,
+        avatar: avatar,
+    }
+
+    try {
+        const response = await fetch(`${url}/addUser`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(user_data)
+        })
+
+        if (response.ok) {
+            show_alert.textContent = "Użytkownik został dodany!"
+            show_alert.style.display = 'block';
+
+            setTimeout(() => {
+                window.location.reload()
+            }, 3000)
+        }
+
     } catch (error) {
         console.log("Error: ", error);
     }

@@ -11,6 +11,9 @@
   font-family: "Custom";
   color: white;
   outline: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 body {
@@ -97,6 +100,4 @@ body .alert {
     transform: translateX(0);
     opacity: 1;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

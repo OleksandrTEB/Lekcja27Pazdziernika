@@ -1,7 +1,7 @@
-const url = 'http://localhost/Lekcja27Pazdziernika/back/php/api.php';
+const url = 'http://localhost/Lekcja27Pazdziernika/Backend/php/api.php';
 const show_alert = document.querySelector('.alert');
 
-document.querySelector(".submit").addEventListener("click", () => {
+document.querySelector(".submit_btn").addEventListener("click", () => {
     addUser()
 })
 
@@ -24,9 +24,9 @@ async function addUser() {
         })
 
         if (response.ok) {
-            first_name.value = '';
-            last_name.value = '';
-            avatar.value = '';
+            first_name = "";
+            last_name = "";
+            avatar = "";
 
             show_alert.style.display = 'block';
 
